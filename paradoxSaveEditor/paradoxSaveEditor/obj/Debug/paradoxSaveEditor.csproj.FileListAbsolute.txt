@@ -1,0 +1,13 @@
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.exe.config
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.exe
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.pdb
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.csprojResolveAssemblyReference.cache
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.exe
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.pdb
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.csproj.GenerateResource.Cache
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.EU4SaveGameEditor.resources
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.techLevelForm.resources
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.monarchAbilitiesForm.resources
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.monarchEditForm.resources
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.countryResources.resources
+d:\libraries\documents\visual studio 2013\Projects\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.provinceEditor.resources
