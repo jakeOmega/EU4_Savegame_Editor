@@ -88,8 +88,8 @@ namespace paradoxSaveEditor
             reader.changeLine(baseLocMon + monarch.getPosition("DIP="), "\t\t\t\t\tDIP=" + monarchEdit.dip);
             reader.changeLine(baseLocMon + monarch.getPosition("ADM="), "\t\t\t\t\tADM=" + monarchEdit.adm);
             reader.changeLine(baseLocMon + monarch.getPosition("MIL="), "\t\t\t\t\tMIL=" + monarchEdit.mil);
-            reader.changeLine(baseLocMon + monarch.getPosition("dynasty="), "\t\t\t\t\tdynasty=\"" + monarchEdit.dynasty+"\"");
-            reader.changeLine(baseLocMon + monarch.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
+            //reader.changeLine(baseLocMon + monarch.getPosition("dynasty="), "\t\t\t\t\tdynasty=\"" + monarchEdit.dynasty+"\"");
+            //reader.changeLine(baseLocMon + monarch.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
 
             if (repeatHeirs.Contains(monarchBox.SelectedIndex))
             {
@@ -99,8 +99,8 @@ namespace paradoxSaveEditor
                 reader.changeLine(baseLocHeir + heir.getPosition("DIP="), "\t\t\t\t\tDIP=" + monarchEdit.dip);
                 reader.changeLine(baseLocHeir + heir.getPosition("ADM="), "\t\t\t\t\tADM=" + monarchEdit.adm);
                 reader.changeLine(baseLocHeir + heir.getPosition("MIL="), "\t\t\t\t\tMIL=" + monarchEdit.mil);
-                reader.changeLine(baseLocHeir + heir.getPosition("dynasty="), "\t\t\t\t\tdynasty=\"" + monarchEdit.dynasty + "\"");
-                reader.changeLine(baseLocHeir + heir.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
+                //reader.changeLine(baseLocHeir + heir.getPosition("dynasty="), "\t\t\t\t\tdynasty=\"" + monarchEdit.dynasty + "\"");
+                //reader.changeLine(baseLocHeir + heir.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
             }
 
         }
@@ -116,8 +116,8 @@ namespace paradoxSaveEditor
             reader.changeLine(baseLocMon + monarch.getPosition("DIP="), "\t\t\t\t\tDIP=" + monarchEdit.dip);
             reader.changeLine(baseLocMon + monarch.getPosition("ADM="), "\t\t\t\t\tADM=" + monarchEdit.adm);
             reader.changeLine(baseLocMon + monarch.getPosition("MIL="), "\t\t\t\t\tMIL=" + monarchEdit.mil);
-            reader.changeLine(baseLocMon + monarch.getPosition("dynasty="), "\t\t\t\t\tdynasty=" + monarchEdit.dynasty);
-            reader.changeLine(baseLocMon + monarch.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
+            //reader.changeLine(baseLocMon + monarch.getPosition("dynasty="), "\t\t\t\t\tdynasty=" + monarchEdit.dynasty);
+            //reader.changeLine(baseLocMon + monarch.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
         }
     }
 }
