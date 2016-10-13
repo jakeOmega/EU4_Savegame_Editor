@@ -9,8 +9,12 @@ using System.Windows.Forms;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// A form for editing a countries resources based on user input
+    /// </summary>
     public partial class countryResources : Form
     {
+        //varous country resources
         public string cash;
         public string manpower;
         public string adm;
@@ -29,8 +33,15 @@ namespace paradoxSaveEditor
         string countryTag;
         fileReader reader;
         textBlock country;
+        /// <summary>
+        /// Initialize a form for changing country resources
+        /// </summary>
+        /// <param name="readerIn">a reader for the save to edit</param>
+        /// <param name="Loc">the index for the beginning of the relevant country text block</param>
+        /// <param name="tag">the three letter identifier for the country to edit (e.g. FRA for France)</param>
         public countryResources(fileReader readerIn, int Loc, string tag)
         {
+            //read in all the current values from the save
             loc = Loc;
             countryTag = tag;
             reader = readerIn;
@@ -106,6 +117,9 @@ namespace paradoxSaveEditor
 
         }
 
+        /// <summary>
+        /// Apply changes and close when done
+        /// </summary>
         private void doneButton_Click(object sender, EventArgs e)
         {
             if (cashBox.Text != "")

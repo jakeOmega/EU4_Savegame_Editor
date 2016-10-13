@@ -26,6 +26,13 @@ namespace paradoxSaveEditor
         //list of locations for unique heirs and repeat heirs (heirs that became monarch and so are listed twice)
         List<int> uniqueHeirs;
         List<int> repeatHeirs;
+
+        /// <summary>
+        /// Initialize a monarchAbilitiesForm, displaying the monarchs and heirs in a specified country
+        /// </summary>
+        /// <param name="readerIn">A reader for the save file we're editing</param>
+        /// <param name="Loc">the line at which the relevant country text starts</param>
+        /// <param name="tag">the three letter identifier for the relevant country (e.g. FRA for France)</param>
         public monarchAbilitiesForm(fileReader readerIn, int Loc, string tag)
         {
             List<string> monarchIDs = new List<string>();
@@ -78,11 +85,17 @@ namespace paradoxSaveEditor
             }
         }
 
+        /// <summary>
+        /// Close when done
+        /// </summary>
         private void onDoneButton(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// On clicking on a monarch, launch a monarchEditForm to edit the monarch, then apply the relevant changes
+        /// </summary>
         private void monarchBox_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
             textBlock monarch = monarchBlocks[monarchBox.SelectedIndex];
@@ -112,6 +125,7 @@ namespace paradoxSaveEditor
 
         }
 
+        //Same as for monarchs above
         private void heirBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             textBlock monarch = heirBlocks[heirBox.SelectedIndex];

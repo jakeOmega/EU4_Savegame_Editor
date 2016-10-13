@@ -11,11 +11,18 @@ using Keys = System.Windows.Forms.Keys;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// Class for the main form for the save game editor
+    /// </summary>
     public partial class EU4SaveGameEditor : Form
     {
         int currentState; //0 - main menu, 1-9 various functions
         fileReader reader;
         string inputFile;
+        /// <summary>
+        /// Initialize a main menu form
+        /// </summary>
+        /// <param name="saveFile">The save file to edit</param>
         public EU4SaveGameEditor(string saveFile)
         {
             currentState = 0;
@@ -37,6 +44,9 @@ namespace paradoxSaveEditor
 
         }
 
+        /// <summary>
+        /// Handle user entered input based on our current state
+        /// </summary>
         private void inputEntered(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -75,6 +85,7 @@ namespace paradoxSaveEditor
             }
         }
 
+        //Handle the various button presses for the buttons on the main menu by changing state and asking the user for further input
         private void aggExpButton_Click(object sender, EventArgs e)
         {
             instructionText.AppendText("Enter the tag(s) of the country or countries you want to remove aggressive expansion for (multiple tags should be seperated by commas).\r\n");
