@@ -9,14 +9,23 @@ using System.Windows.Forms;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// Form for editing a particular monarch (or heir)
+    /// </summary>
     public partial class monarchEditForm : Form
     {
+        //monarch's attributes
         public string name;
         public string dip;
         public string adm;
         public string mil;
+        //These two not fully supported yet
         public string dynasty;
         public string birthDate;
+        /// <summary>
+        /// Initialize a monarchEditForm for a specified monarch
+        /// </summary>
+        /// <param name="monarch">textBlock containing info about specified monarch</param>
         public monarchEditForm(textBlock monarch)
         {
             InitializeComponent();
@@ -49,6 +58,9 @@ namespace paradoxSaveEditor
             birthdateLabel.Text = birthDate;
         }
 
+        /// <summary>
+        /// Make changes to monarch and close form
+        /// </summary>
         private void Done_Click(object sender, EventArgs e)
         {
             if (nameBox.Text != "" )

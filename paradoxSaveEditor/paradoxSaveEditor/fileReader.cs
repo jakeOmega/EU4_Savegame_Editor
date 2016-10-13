@@ -186,7 +186,12 @@ namespace paradoxSaveEditor
             }
         }
 
-
+        /// <summary>
+        /// Find all lines that contain or exactly match a specified search key
+        /// </summary>
+        /// <param name="pattern">The text to be in the found lines</param>
+        /// <param name="exact">A boolean on if the found lines must match they pattern exactly (or just contain it)</param>
+        /// <returns>an array of idexes for the lines matching pattern</returns>
         public int[] findAll(string pattern, bool exact = false)
         {
             List<int> locations = new List<int>();
@@ -206,6 +211,15 @@ namespace paradoxSaveEditor
             return locations.ToArray();
         }
 
+        /// <summary>
+        /// Finds all lines for which pattern(line) is true, at specified layer
+        /// </summary>
+        /// <param name="pattern">Boolean function lines must make true</param>
+        /// <param name="layer">The layer at which we want results</param>
+        /// <param name="start">The starting character for a sub-block layer (usually {)</param>
+        /// <param name="end">The ending character for a sub-block layer (ususally })</param>
+        /// <param name="exact">A boolean on if the found lines must match they pattern exactly (or just contain it)</param>
+        /// <returns>An array of locations matching pattern</returns>
         public int[] findAll(string pattern, int layer, char start, char end, bool exact = false)
         {
             int currentLayer = 0;
@@ -229,6 +243,14 @@ namespace paradoxSaveEditor
             return locations.ToArray();
         }
 
+        /// <summary>
+        /// Find all lines that contain or exactly match a specified search key
+        /// </summary>
+        /// <param name="pattern">The text to be in the found lines</param>
+        /// <param name="layer">The layer at which we want results</param>
+        /// <param name="start">The starting character for a sub-block layer (usually {)</param>
+        /// <param name="end">The ending character for a sub-block layer (ususally })</param>
+        /// <returns>an array of idexes for the lines matching pattern</returns>
         public int[] findAll(Func<string, bool> pattern, int layer, char start, char end)
         {
             int currentLayer = 0;
@@ -248,6 +270,15 @@ namespace paradoxSaveEditor
             return locations.ToArray();
         }
 
+        /// <summary>
+        /// Find the first line that contain or exactly match a specified search key
+        /// </summary>
+        /// <param name="pattern">The text to be in the found lines</param>
+        /// <param name="layer">The layer at which we want results</param>
+        /// <param name="start">The starting character for a sub-block layer (usually {)</param>
+        /// <param name="end">The ending character for a sub-block layer (ususally })</param>
+        /// <param name="exact">A boolean on if the found lines must match they pattern exactly (or just contain it)</param>
+        /// <returns>an array of idexes for the lines matching pattern</returns>
         public int getPosition(string pattern, int layer, char start, char end, bool exact = false)
         {
             int currentLayer = 0;
@@ -270,11 +301,20 @@ namespace paradoxSaveEditor
             return -1;
         }
 
+        /// <summary>
+        /// Change one line's text
+        /// </summary>
+        /// <param name="line">The line number to change</param>
+        /// <param name="newLine">The new text of the line</param>
         public void changeLine(int line, string newLine)
         {
             text[line] = newLine;
         }
 
+        /// <summary>
+        /// Deletes one line
+        /// </summary>
+        /// <param name="index">index of the line to delete</param>
         public void removeLine(int index)
         {
             List<string> newText = text.ToList<string>();
@@ -282,16 +322,29 @@ namespace paradoxSaveEditor
             text = newText.ToArray();
         }
 
+        /// <summary>
+        /// Change the current line of the reader
+        /// </summary>
+        /// <param name="newLineNum">The new current line index</param>
         public void setLineNum(int newLineNum)
         {
             lineNum = newLineNum;
         }
 
+        /// <summary>
+        /// Change the current character position of the reader
+        /// </summary>
+        /// <param name="newCharNum">The new current character index</param>
         public void setCharNum(int newCharNum)
         {
             charNum = newCharNum;
         }
 
+        /// <summary>
+        /// Write the text (with any chages made) to disk
+        /// </summary>
+        /// <param name="outFile">The file location to save to</param>
+        /// <param name="encoding">The encoding to use, defaults to iso-8859-1</param>
         public void writeFile(string outFile, Encoding encoding = null)
         {
             if (encoding == null)

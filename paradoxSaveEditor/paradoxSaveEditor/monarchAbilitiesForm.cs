@@ -9,14 +9,21 @@ using System.Windows.Forms;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// Form for listing all monarchs and heirs from a particular country
+    /// and launching a monarchEditForm when the user selects one
+    /// </summary>
     public partial class monarchAbilitiesForm : Form
     {
-        fileReader reader;
+        fileReader reader; //reader for our save
+        //lists of parts of save for monarchs and heirs
         List<textBlock> monarchBlocks = new List<textBlock>();
         List<textBlock> heirBlocks = new List<textBlock>();
-        int loc;
+        int loc;//location in the save for this country
+        //locations of the beginning of the text for each monarch and heir
         int[] monarchs;
         int[] heirs;
+        //list of locations for unique heirs and repeat heirs (heirs that became monarch and so are listed twice)
         List<int> uniqueHeirs;
         List<int> repeatHeirs;
         public monarchAbilitiesForm(fileReader readerIn, int Loc, string tag)

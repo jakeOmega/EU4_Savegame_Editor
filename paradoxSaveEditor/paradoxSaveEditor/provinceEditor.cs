@@ -10,15 +10,25 @@ using System.Text.RegularExpressions;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// Handles batch editing of provinces based on user input
+    /// </summary>
     public partial class provinceEditor : Form
     {
-        fileReader reader;
+        fileReader reader;//reader containing save to change
+        /// <summary>
+        /// Initialize province editing form
+        /// </summary>
+        /// <param name="readerIn">reader containing save to edit</param>
         public provinceEditor(fileReader readerIn)
         {
             reader = readerIn;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles display of the changing of province editing mode based on user selection
+        /// </summary>
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             if( (string)editByButton.SelectedItem == "Province ID")
@@ -47,6 +57,9 @@ namespace paradoxSaveEditor
             }
         }
 
+        /// <summary>
+        /// Batch edit provinces based on user entries when run button pressed
+        /// </summary>
         private void runButton_Click(object sender, EventArgs e)
         {
             string newOwner = newOwnerBox.Text;
@@ -60,13 +73,16 @@ namespace paradoxSaveEditor
             int provLoc = reader.getPosition("provinces=", 0, '{', '}');
             reader.goTo(provLoc);
             textBlock provinces = new textBlock('{','}', reader);
-            Regex rgx = new Regex(@"-[0-9]+=");
+            Regex rgx = new Regex(@"-[0-9]+=");//province number finding regular expression
 
             string[] editList = editByInputBox.Text.Replace(" ", "").Split(',');
             int[] provLocs = provinces.findAll(x => rgx.IsMatch(x), 1, '{', '}');
             
+
+            //for every province, make changes based on user entry in this form
             foreach ( int prov in provLocs )
             {
+                //check if this province is included in the user's province specificiation
                 textBlock thisProv = new textBlock();
                 bool editThis = false;
                 if ( (string)editByButton.SelectedItem == "Province ID")
@@ -125,6 +141,7 @@ namespace paradoxSaveEditor
                     thisProv = new textBlock('{', '}', reader);
                     editThis = true;
                 }
+                //If it is something to edit, edit it appropriately
                 if ( editThis )
                 {
                     int nameLoc = thisProv.getPosition("name=");
@@ -195,6 +212,8 @@ namespace paradoxSaveEditor
             outputBox.AppendText("Done!\r\n");
         }
 
+
+        //close the form when done
         private void doneButton_Click(object sender, EventArgs e)
         {
             this.Close();

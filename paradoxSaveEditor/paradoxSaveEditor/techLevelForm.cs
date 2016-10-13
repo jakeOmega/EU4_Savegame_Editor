@@ -9,15 +9,24 @@ using System.Windows.Forms;
 
 namespace paradoxSaveEditor
 {
+    /// <summary>
+    /// Form for handling changes in countries tech level
+    /// </summary>
     public partial class techLevelForm : Form
     {
-        fileReader reader;
-        public int loc;
-        public string admLevel;
-        public string dipLevel;
-        public string milLevel;
-        public int techLoc;
+        fileReader reader;//reader containing the file to edit
+        public int loc;//Where in the file the country block to edit begins
+        public string admLevel;//Admin tech level
+        public string dipLevel;//diplomatic tech level
+        public string milLevel;//military tech level
+        public int techLoc;//where in the country block the technology information is
         textBlock country;
+        /// <summary>
+        /// Initialize a tech level editing form
+        /// </summary>
+        /// <param name="readerIn">The reader containing the file to edit</param>
+        /// <param name="Loc">The location in the reader of the country to edit</param>
+        /// <param name="tag">The three letter identifier of the country to edit (e.g. FRA for france)</param>
         public techLevelForm(fileReader readerIn, int Loc, string tag)
         {
             loc = Loc;
@@ -38,8 +47,12 @@ namespace paradoxSaveEditor
             instructionText.Text = "Please enter new tech values for country " + tag + "\nor leave a box blank to leave that text level unchanged.";
         }
 
+        /// <summary>
+        /// Applies any changes based on user input
+        /// </summary>
         private void onDoneButton(object sender, EventArgs e)
         {
+            //change tech levels and units appropriately
             admLevel = admBox.Text;
             dipLevel = dipBox.Text;
             milLevel = milBox.Text;
