@@ -19,13 +19,15 @@ namespace paradoxSaveEditor
         //lists of parts of save for monarchs and heirs
         List<textBlock> monarchBlocks = new List<textBlock>();
         List<textBlock> heirBlocks = new List<textBlock>();
-        int loc;//location in the save for this country
+        int historyLoc;//location in the save for this country's history
+        int countryLoc;//location in the save for this country
         //locations of the beginning of the text for each monarch and heir
         int[] monarchs;
         int[] heirs;
         //list of locations for unique heirs and repeat heirs (heirs that became monarch and so are listed twice)
         List<int> uniqueHeirs;
         List<int> repeatHeirs;
+        string tag;
 
         /// <summary>
         /// Initialize a monarchAbilitiesForm, displaying the monarchs and heirs in a specified country
@@ -33,30 +35,46 @@ namespace paradoxSaveEditor
         /// <param name="readerIn">A reader for the save file we're editing</param>
         /// <param name="Loc">the line at which the relevant country text starts</param>
         /// <param name="tag">the three letter identifier for the relevant country (e.g. FRA for France)</param>
-        public monarchAbilitiesForm(fileReader readerIn, int Loc, string tag)
+        public monarchAbilitiesForm(fileReader readerIn, int Loc, string Tag)
+        {
+            reader = readerIn;
+            countryLoc = Loc;
+            tag = Tag;
+            InitializeComponent();
+            initialize();
+        }
+
+        /// <summary>
+        /// Initialize the form.
+        /// </summary>
+        public void initialize()
         {
             List<string> monarchIDs = new List<string>();
-            reader = readerIn;
-            InitializeComponent();
-            reader.goTo(Loc);
+            reader.goTo(this.countryLoc);
             textBlock country = new textBlock('{', '}', reader);
-            int historyLoc = country.getPosition("history=");
-            reader.goTo(Loc + historyLoc);
+            int historyLocLocal = country.getPosition("history=");
+            reader.goTo(this.countryLoc + historyLocLocal);
             textBlock history = new textBlock('{', '}', reader);
             monarchs = history.findAll("monarch=", 2, '{', '}');
             heirs = history.findAll("heir=", 2, '{', '}');
             uniqueHeirs = new List<int>();
             repeatHeirs = new List<int>();
-            loc = Loc+historyLoc;
+            historyLoc = countryLoc + historyLocLocal;
+
+            monarchBox.Items.Clear();
+            monarchIDs.Clear();
+            monarchBlocks.Clear();
+            heirBox.Items.Clear();
+            heirBlocks.Clear();
 
             int i = monarchs.Length - 1;
-            while ( i >= 0)
+            while (i >= 0)
             {
-                reader.goTo(Loc + historyLoc + monarchs[i]);
+                reader.goTo(historyLoc + monarchs[i]);
                 textBlock monarch = new textBlock('{', '}', reader);
-                string name = monarch.getLine(monarch.getPosition("name=")).Split('=')[1].Replace("\"","").Trim();
+                string name = monarch.getLine(monarch.getPosition("name=")).Split('=')[1].Replace("\"", "").Trim();
                 int thing = monarch.getPosition("id=");
-                string ID = monarch.getLine(monarch.getPosition("id=",false, 2)).Split('=')[1].Trim();
+                string ID = monarch.getLine(monarch.getPosition("id=", false, 2)).Split('=')[1].Trim();
                 monarchBox.Items.Add(name);
                 monarchIDs.Add(ID);
                 monarchBlocks.Add(monarch);
@@ -66,11 +84,11 @@ namespace paradoxSaveEditor
             i = heirs.Length - 1;
             while (i >= 0)
             {
-                reader.goTo(Loc + historyLoc + heirs[i]);
+                reader.goTo(historyLoc + heirs[i]);
                 textBlock monarch = new textBlock('{', '}', reader);
                 string name = monarch.getLine(monarch.getPosition("name=")).Split('=')[1].Replace("\"", "").Trim();
                 string ID = monarch.getLine(monarch.getPosition("id=", false, 2)).Split('=')[1].Trim();
-                if ( !monarchIDs.Contains(ID) )
+                if (!monarchIDs.Contains(ID))
                 {
                     heirBox.Items.Add(name);
                     heirBlocks.Add(monarch);
@@ -101,7 +119,7 @@ namespace paradoxSaveEditor
             textBlock monarch = monarchBlocks[monarchBox.SelectedIndex];
             monarchEditForm monarchEdit = new monarchEditForm(monarch);
             monarchEdit.ShowDialog();
-            int baseLocMon = loc + monarchs[monarchs.Length - 1 - monarchBox.SelectedIndex];
+            int baseLocMon = historyLoc + monarchs[monarchs.Length - 1 - monarchBox.SelectedIndex];
             textBlock heir = new textBlock();
 
             reader.changeLine(baseLocMon + monarch.getPosition("name="), "\t\t\t\t\tname=\"" + monarchEdit.name+"\"");
@@ -113,7 +131,7 @@ namespace paradoxSaveEditor
 
             if (repeatHeirs.Contains(monarchBox.SelectedIndex))
             {
-                int baseLocHeir = loc + heirs[heirs.Length - 1 - repeatHeirs.IndexOf(monarchBox.SelectedIndex)];
+                int baseLocHeir = historyLoc + heirs[heirs.Length - 1 - repeatHeirs.IndexOf(monarchBox.SelectedIndex)];
                 heir = heirBlocks[repeatHeirs.IndexOf(monarchBox.SelectedIndex)];
                 reader.changeLine(baseLocHeir + heir.getPosition("name="), "\t\t\t\t\tname=\"" + monarchEdit.name + "\"");
                 reader.changeLine(baseLocHeir + heir.getPosition("DIP="), "\t\t\t\t\tDIP=" + monarchEdit.dip);
@@ -122,7 +140,7 @@ namespace paradoxSaveEditor
                 //reader.changeLine(baseLocHeir + heir.getPosition("dynasty="), "\t\t\t\t\tdynasty=\"" + monarchEdit.dynasty + "\"");
                 //reader.changeLine(baseLocHeir + heir.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
             }
-
+            initialize();
         }
 
         //Same as for monarchs above
@@ -131,7 +149,7 @@ namespace paradoxSaveEditor
             textBlock monarch = heirBlocks[heirBox.SelectedIndex];
             monarchEditForm monarchEdit = new monarchEditForm(monarch);
             monarchEdit.ShowDialog();
-            int baseLocMon = loc + heirs[uniqueHeirs[heirBox.SelectedIndex]];
+            int baseLocMon = historyLoc + heirs[uniqueHeirs[heirBox.SelectedIndex]];
 
             reader.changeLine(baseLocMon + monarch.getPosition("name="), "\t\t\t\t\tname=" + monarchEdit.name);
             reader.changeLine(baseLocMon + monarch.getPosition("DIP="), "\t\t\t\t\tDIP=" + monarchEdit.dip);
@@ -139,6 +157,8 @@ namespace paradoxSaveEditor
             reader.changeLine(baseLocMon + monarch.getPosition("MIL="), "\t\t\t\t\tMIL=" + monarchEdit.mil);
             //reader.changeLine(baseLocMon + monarch.getPosition("dynasty="), "\t\t\t\t\tdynasty=" + monarchEdit.dynasty);
             //reader.changeLine(baseLocMon + monarch.getPosition("birth_date="), "\t\t\t\t\tbirth_date=" + monarchEdit.birthDate);
+
+            initialize();
         }
     }
 }

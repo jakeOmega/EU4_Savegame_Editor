@@ -24,3 +24,16 @@ D:\Libraries\Documents\Github Projects\EU4_Savegame_Editor\paradoxSaveEditor\par
 D:\Libraries\Documents\Github Projects\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.provinceEditor.resources
 D:\Libraries\Documents\Github Projects\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.techLevelForm.resources
 D:\Libraries\Documents\Github Projects\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.csproj.GenerateResource.Cache
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.exe.config
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.exe
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.pdb
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.exe
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\bin\Debug\paradoxSaveEditor.pdb
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.csprojResolveAssemblyReference.cache
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.countryResources.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.EU4SaveGameEditor.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.monarchAbilitiesForm.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.monarchEditForm.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.provinceEditor.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.techLevelForm.resources
+C:\Users\Jake\Documents\GitHub\EU4_Savegame_Editor\paradoxSaveEditor\paradoxSaveEditor\obj\Debug\paradoxSaveEditor.csproj.GenerateResource.Cache
